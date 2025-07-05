@@ -1,5 +1,6 @@
 # react-example-context
-Simple react app with context usage
+Simple react app with context usage. 
+Also has example of loading data from backend via useEffect() and fetch()
 
 # It was set up as follows
 nvm use 20
