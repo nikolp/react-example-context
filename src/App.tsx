@@ -1,20 +1,20 @@
-import { useState } from 'react'
 import './App.css'
+import CountersContextProvider from './store/counters-context'
+import CounterList from './components/CounterList'
+import AddCounter from './components/AddCounter';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <h1>Simple project</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-
+      <CountersContextProvider>
+        <AddCounter/>
+        <div className="card">
+          <CounterList/>
+        </div>
+      </CountersContextProvider>
     </>
-  )
+  );
 }
 
 export default App

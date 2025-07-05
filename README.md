@@ -7,6 +7,11 @@ npm create vite@latest
 npm install
 npm run dev
 
+# TODO
+Create a form to enter values for Counter instead of them being randomly generated.
+Basically the AddCounter components should be form with submit button
+instead of just a button.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
