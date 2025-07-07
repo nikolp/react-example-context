@@ -17,11 +17,13 @@ type RawDataBlogPost = {
 function App() {
   // context managed directly here instead of the context which is for Counters
   const [fetchedPosts, setFetchedPosts] = useState<BlogPost[]>();
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   // only runs once, since dependencies
   useEffect(() => {
     // inner fuction can be async but not the outer
     async function fetchPosts() {
+      setIsFetching(true);
       const data = (await get(
         'https://jsonplaceholder.typicode.com/posts'
       )) as RawDataBlogPost[];  // this is where we typecast the unknown into what we know will come
@@ -37,6 +39,7 @@ function App() {
       });
 
       setFetchedPosts(blogPosts);
+      setIsFetching(false);
     }
 
     fetchPosts();
@@ -44,6 +47,9 @@ function App() {
 
   // workaround because TS thinks fetchedPosts could be undefined
   let blogContent: ReactNode;
+  if (isFetching) {
+    blogContent = <h1>Still Loading...</h1>;
+  }
   if (fetchedPosts) {
     // over here TS know fetchedPosts is NOT undefined so does not complain
     blogContent = <BlogPosts posts={fetchedPosts.slice(0, 3)} />;
